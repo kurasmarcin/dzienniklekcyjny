@@ -118,7 +118,7 @@ ERROR;
           </select>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-city"></span>
+              <span class="fa-graduation-cap"></span>
             </div>
           </div>
         </div>
