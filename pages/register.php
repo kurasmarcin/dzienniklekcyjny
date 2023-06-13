@@ -35,7 +35,7 @@ ERROR;
   ?>
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="./index.php" class="h1"><b>Admin</b>LTE</a>
+      <a href="./index.php" class="h1"><b>Dziennik</b> Ocen</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Rejestracja</p>
@@ -60,7 +60,7 @@ ERROR;
         </div>
 
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Posaj adres email" name="email1">
+          <input type="email" class="form-control" placeholder="Podaj adres email" name="email1">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -69,7 +69,7 @@ ERROR;
         </div>
 
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Posaj adres email" name="email2">
+          <input type="email" class="form-control" placeholder="Potwierdź adres email" name="email2">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -128,7 +128,7 @@ ERROR;
             <div class="icheck-primary">
               <input type="checkbox" id="agreeTerms" name="terms" value="agree">
               <label for="agreeTerms">
-               I agree to the <a href="#">terms</a>
+               Nie jestem robotem
               </label>
             </div>
           </div>
@@ -140,18 +140,9 @@ ERROR;
         </div>
       </form>
 
-      <div class="social-auth-links text-center">
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i>
-          Sign up using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i>
-          Sign up using Google+
-        </a>
-      </div>
 
-      <a href="index.php" class="text-center">I already have a membership</a>
+
+      <a href="index.php" class="text-center">Mam już swoje konto </a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

@@ -15,7 +15,7 @@ foreach ($_POST as $value){
 $error = 0;
 
 if (!isset($_POST["terms"])){
-	$_SESSION["error"] = "Zaznacz regulamin!";
+	$_SESSION["error"] = "Potwierdź, że nie jesteś robotem!";
 	$error = 1;
 }
 

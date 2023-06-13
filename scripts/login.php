@@ -73,6 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 			$stmt->bind_param("iss", $user, $status, $ip);
 			$stmt->execute();
 			$stmt->close();
+
 		}
 
 	}catch (mysqli_sql_exception $e){
