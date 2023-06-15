@@ -104,24 +104,7 @@ ERROR;
           </div>
         </div>
 
-        <div class="input-group mb-3">
-          <select class="custom-select" name="class_id">
-            <?php
-              require_once "../scripts/connect.php";
-              $sql = "SELECT id, class FROM class";
-              $result = $conn->query($sql);
-              while ($class = $result->fetch_assoc()){
-                echo "<option value='$class[id]'>$class[class]</option>";
-              }
-              $conn->close();
-            ?>
-          </select>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fa-graduation-cap"></span>
-            </div>
-          </div>
-        </div>
+
 
         <div class="row">
           <div class="col-8">

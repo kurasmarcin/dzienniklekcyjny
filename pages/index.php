@@ -34,19 +34,21 @@ ERROR;
 		unset($_SESSION["success"]);
 	}
 
-	if (isset($_SESSION["error"])){
-		echo <<<ERROR
+    if (isset($_SESSION["error"])) {
+      $_SESSION["error"] = "Błędne hasło lub login ";
+
+      echo <<<ERROR
         <div class="alert alert-danger alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <h5><i class="icon fas fa-ban"></i> Błąd!</h5>
-                  $_SESSION[error]
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-ban"></i> Błąd!</h5>
+            {$_SESSION["error"]}
         </div>
 ERROR;
 
+      unset($_SESSION["error"]); // Usuwa oryginalną treść zmiennej "error"
+    }
 
-		unset($_SESSION["error"]);
-	}
-	?>
+    ?>
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
@@ -65,6 +67,7 @@ ERROR;
           </div>
         </div>
         <div class="input-group mb-3">
+
           <input type="password" class="form-control" placeholder="Podaj hasło" name="pass">
           <div class="input-group-append">
             <div class="input-group-text">
@@ -77,7 +80,7 @@ ERROR;
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
               <label for="remember">
-                Zapamiętaj mnie
+                Zapamiętaj Login
               </label>
             </div>
           </div>
@@ -92,10 +95,7 @@ ERROR;
 
       <!-- /.social-auth-links -->
 
-      <p class="mb-1">
-        <a href="forgot-password.html">Zapomniałem hasła</a>
-      </p>
-      <p class="mb-0">
+
         <a href="register.php" class="text-center">Rejestracja</a>
       </p>
     </div>

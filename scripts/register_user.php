@@ -37,11 +37,11 @@ if ($error != 0){
 require_once "./connect.php";
 
 try {
-	$stmt = $conn->prepare("INSERT INTO `users` (`class_id`, `email`, `firstName`, `lastName`, `birthday`, `password`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, current_timestamp())");
+	$stmt = $conn->prepare("INSERT INTO `users` (`id`, `email`, `firstName`, `lastName`, `birthday`, `password`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, current_timestamp())");
 
 	$pass = password_hash($_POST["pass1"], PASSWORD_ARGON2ID);
 
-	$stmt->bind_param("ssssss", $_POST["class_id"], $_POST["email1"], $_POST["firstName"], $_POST["lastName"], $_POST["birthday"], $pass);
+	$stmt->bind_param("ssssss", $_POST["id"], $_POST["email1"], $_POST["firstName"], $_POST["lastName"], $_POST["birthday"], $pass);
 
 	$stmt->execute();
 
