@@ -32,50 +32,67 @@
                                     <h3 class="card-title">Oceny</h3>
                                 </div>
                                 <!-- /.card-header -->
-                                <div class="card-body">
-                                    <table id="example2" class="table table-bordered table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>User ID</th>
-                                            <th>Class ID</th>
-                                            <th>Role ID</th>
-                                            <th>Rodzaj aktywności</th>
-                                            <th>Ocena</th>
-                                            <th>Data wstawienia</th>
-                                            <th>Data aktualizacji</th>
-                                            <th>Średnia</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <!-- Przykładowa baza danych pisana z łapy Dodać baze danych SQL Pomyśleć nad kolumnami-->
-                                        <tr>
-                                            <td>Uczeń Piotr</td>
-                                            <td>2</td>
-                                            <td>uczeń</td>
-                                            <!-- coś zrobić z rodzajami aktywności i wyświetlaniem ocen obok nich  -->
-                                            <td>Kartkówka</td>
-                                            <td>4</td>
-                                            <!-- Pomyśleć jak zrobić pobieranie daty -->
-                                            <td>22.02.23</td>
-                                            <!-- Pomyśleć jak zrobić aktualizację daty -->
-                                            <td>25.02.23</td>
-                                            <!-- Napisać komende na liczenie śreniej ocen -->
-                                            <td>4</td>
-                                        </tr>
-                                        <tr>
+                                <table class="card-body">
+                                    <thead>
+                                    <tr>
+                                        <th>Imie</th>
+                                        <th>Nazwisko</th>
+                                        <th>kartkówka</th>
+                                        <th>sprawdzian</th>
+                                        <th>odpowiedź</th>
+                                        <th>Średnia</th>
+                                    </tr>
+                                    </thead>
+                                    <?php
+                                    require_once "../scripts/connect.php";
 
-                                        </tbody>
+                                    $sql = "SELECT u.id, k.ocena AS kartkowka, s.ocena AS sprawdzian, o.ocena AS odpowiedz,\n"
+                                        . "       (k.ocena + s.ocena + o.ocena) / 3 AS srednia,\n"
+                                        . "       u.firstName, u.lastName, u.id AS user_id\n"
+                                        . "FROM users u\n"
+                                        . "JOIN kontakty kty ON u.id = kty.id\n"
+                                        . "JOIN roles r ON kty.role_id = r.id\n"
+                                        . "LEFT JOIN kartkowka k ON u.id = k.user_id\n"
+                                        . "LEFT JOIN sprawdzian s ON u.id = s.user_id\n"
+                                        . "LEFT JOIN odpowiedz o ON u.id = o.user_id\n"
+                                        . "WHERE r.id = 1;";
+                                    $result = $conn->query($sql);
 
-                                    </table>
-                                </div>
-                                <!-- /.card-body -->
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            $firstName = $row['firstName'];
+                                            $lastName = $row['lastName'];
+                                            $kartkowka = $row['kartkowka'];
+                                            $sprawdzian = $row['sprawdzian'];
+                                            $odpowiedz = $row['odpowiedz'];
+                                            $srednia = $row['srednia'];
+                                            $userId = $row['user_id'];
+
+                                            echo "<tr>";
+                                            echo "<td>$firstName</td>";
+                                            echo "<td>$lastName</td>";
+                                            echo "<td><form method='POST' action='edytuj.php'><input type='hidden' name='userId' value='$userId'><input type='number' name='kartkowka' value='$kartkowka'><input type='submit' value='Zapisz'></form></td>";
+                                            echo "<td><form method='POST' action='edytuj.php'><input type='hidden' name='userId' value='$userId'><input type='number' name='sprawdzian' value='$sprawdzian'><input type='submit' value='Zapisz'></form></td>";
+                                            echo "<td><form method='POST' action='edytuj.php'><input type='hidden' name='userId' value='$userId'><input type='number' name='odpowiedz' value='$odpowiedz'><input type='submit' value='Zapisz'></form></td>";
+                                            echo "<td>$srednia</td>";
+                                            echo "</tr>";
+                                        }
+                                    } else {
+                                        echo "Brak danych do wyświetlenia.";
+                                    }
+
+                                    $conn->close();
+                                    ?>
+                                </table>
                             </div>
-
-
-
-
-
-
-            </section>
-            <!-- /.content -->
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+                </div>
         </div>
+    </section>
+    <!-- /.content -->
+</div>
+</section>
+</div>
+

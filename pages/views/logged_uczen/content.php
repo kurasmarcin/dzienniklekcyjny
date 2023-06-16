@@ -32,41 +32,56 @@
                                     <h3 class="card-title">Oceny</h3>
                                 </div>
                                 <!-- /.card-header -->
-                                <div class="card-body">
-                                    <table id="example2" class="table table-bordered table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>User ID</th>
-                                            <th>Class ID</th>
-                                            <th>Role ID</th>
-                                            <th>Rodzaj aktywności</th>
-                                            <th>Ocena</th>
-                                            <th>Data wstawienia</th>
-                                            <th>Data aktualizacji</th>
-                                            <th>Średnia</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <!-- Przykładowa baza danych pisana z łapy Dodać baze danych SQL Pomyśleć nad kolumnami-->
-                                        <tr>
-                                            <td>Uczeń Piotr</td>
-                                            <td>2</td>
-                                            <td>uczeń</td>
-                                            <!-- coś zrobić z rodzajami aktywności i wyświetlaniem ocen obok nich  -->
-                                            <td>Kartkówka</td>
-                                            <td>4</td>
-                                            <!-- Pomyśleć jak zrobić pobieranie daty -->
-                                            <td>22.02.23</td>
-                                            <!-- Pomyśleć jak zrobić aktualizację daty -->
-                                            <td>25.02.23</td>
-                                            <!-- Napisać komende na liczenie śreniej ocen -->
-                                            <td>4</td>
-                                        </tr>
-                                        <tr>
+                                <table class="card-body">
+                                    <thead>
+                                    <tr>
+                                        <th>Imie</th>
+                                        <th>Nazwisko</th>
+                                        <th>kartkówka</th>
+                                        <th>sprawdzian</th>
+                                        <th>odpowiedź</th>
+                                        <th>Średnia</th>
+                                    </tr>
+                                    </thead>
+                                    <?php
+                                    require_once "../scripts/connect.php";
 
-                                        </tbody>
+                                    // Pobranie ID użytkownika
+                                    $userID = 9;
 
-                                    </table>
+                                    $sql = "SELECT * FROM wszystko WHERE user_id = $userID";
+
+                                    $result = $conn->query($sql);
+
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            $firstName = $row['firstName'];
+                                            $lastName = $row['lastName'];
+                                            $kartkowka = $row['kartkowka'];
+                                            $sprawdzian = $row['sprawdzian'];
+                                            $odpowiedz = $row['odpowiedz'];
+                                            $srednia = $row['srednia'];
+                                            $userId = $row['user_id'];
+
+                                            echo "<tr>";
+                                            echo "<td>$firstName</td>";
+                                            echo "<td>$lastName</td>";
+                                            echo "<td>$kartkowka</td>";
+                                            echo "<td>$sprawdzian</td>";
+                                            echo "<td>$odpowiedz</td>";
+                                            echo "<td>$srednia</td>";
+                                            echo "</tr>";
+                                        }
+                                    } else {
+                                        echo "Brak danych do wyświetlenia.";
+                                    }
+
+                                    $conn->close();
+                                    ?>
+
+
+
+                                </table>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
