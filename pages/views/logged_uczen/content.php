@@ -82,15 +82,15 @@
 
 
                                 </table>
-                                </div>
-                                <!-- /.card-body -->
                             </div>
+                            <!-- /.card-body -->
+                        </div>
 
 
 
 
 
 
-    </section>
-    <!-- /.content -->
-</div>
+            </section>
+            <!-- /.content -->
+        </div>

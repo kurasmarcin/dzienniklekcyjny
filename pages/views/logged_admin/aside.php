@@ -11,11 +11,19 @@
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 			<div class="image">
 				<?php
-				echo '<img src="../dist/img/avatar.png'.$_SESSION["logged"]["logo"].'" class="img-circle elevation-2" alt="User Image">';
+				if ($_SESSION["logged"]["role_id"] == 2 || $_SESSION["logged"]["role_id"] == 3) {
+					echo '<img src="../dist/img/avatar.png'.$_SESSION["logged"]["logo"].'" class="img-circle elevation-2" alt="User Image">';
+				}
 				?>
 			</div>
 			<div class="info">
-				<span href="#" class="d-block"><?php echo $_SESSION["logged"]["firstName"]." ".$_SESSION["logged"]["lastName"] ?></span>
+				<span href="#" class="d-block">
+					<?php
+					if ($_SESSION["logged"]["role_id"] == 2 || $_SESSION["logged"]["role_id"] == 3) {
+						echo $_SESSION["logged"]["firstName"]." ".$_SESSION["logged"]["lastName"];
+					}
+					?>
+				</span>
 			</div>
 		</div>
 
@@ -51,9 +59,9 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="./../5_dbtable_usun_add_update.php" class="nav-link">
+							<a href="./calendar_admin.html" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Kontakt</p>
+								<p>Kalendarz</p>
 							</a>
 						</li>
 					</ul>
