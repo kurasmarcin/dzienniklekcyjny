@@ -123,14 +123,26 @@
                                     <hr>
 
                                     <?php
-                                    if (isset($_GET["userIdUpdate"])) {
+                                    if (isset($_GET["addUser"])) {
+                                        echo <<< ADDUSERFORM
+        <h4>Dodawanie użytkownika</h4>
+        <form action="../scripts/add_user.php" method="post">
+            <input type="text" name="imie" placeholder="Podaj imię" autofocus><br><br>
+            <input type="text" name="nazwisko" placeholder="Podaj nazwisko"><br><br>
+            <input type="password" name="haslo" placeholder="Podaj hasło"><br><br>
+            <input type="email" name="email" placeholder="Podaj adres e-mail"><br><br>
+            <input type="submit" value="Dodaj użytkownika">
+        </form>
+ADDUSERFORM;
+
+                                    } else if (isset($_GET["userIdUpdate"])) {
                                         $userId = $_GET["userIdUpdate"];
                                         $sql = "SELECT u.*, k.ocena AS ocena_kartkowki, s.ocena AS ocena_sprawdzianu, o.ocena AS ocena_odpowiedzi
-            FROM users AS u
-            LEFT JOIN kartkowka AS k ON u.id = k.user_id
-            LEFT JOIN sprawdzian AS s ON u.id = s.user_id
-            LEFT JOIN odpowiedz AS o ON u.id = o.user_id
-            WHERE u.id=$userId";
+        FROM users AS u
+        LEFT JOIN kartkowka AS k ON u.id = k.user_id AND k.ocena BETWEEN 1 AND 6
+        LEFT JOIN sprawdzian AS s ON u.id = s.user_id AND s.ocena BETWEEN 1 AND 6
+        LEFT JOIN odpowiedz AS o ON u.id = o.user_id AND o.ocena BETWEEN 1 AND 6
+        WHERE u.id = $userId";
                                         $result = $conn->query($sql);
                                         $user = $result->fetch_assoc();
 
@@ -153,7 +165,8 @@
             <input type="submit" value="Aktualizuj użytkownika">
              
         </form>
-EDITUSERFORM;
+EDITUSERFORM; }else {
+                                        echo '<a href="./logged.php?addUser=1">Dodaj użytkownika</a>';
                                     }
 
                                     $conn->close();
