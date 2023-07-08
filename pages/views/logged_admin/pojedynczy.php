@@ -63,13 +63,13 @@
 
         <!-- Navbar -->
         <?php
-        require_once __DIR__ . "/navbar_nauczyciel.php";
+        require_once __DIR__ . "/navbar.php";
         ?>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
         <?php
-        require_once __DIR__ . "/../$role/aside1.php";
+        require_once __DIR__ . "/../$role/aside.php";
         ?>
 
         <!-- Content Wrapper. Contains page content -->

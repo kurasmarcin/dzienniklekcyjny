@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Dziennik Nauczyciela:</h1>
+                    <h1 class="m-0">Panel Administracyjny:</h1>
                     <div class="info">
                         <span href="#" class="accent-green"><?php echo $_SESSION["logged"]["firstName"]." ".$_SESSION["logged"]["lastName"] ?></span>
                     </div>
@@ -158,9 +158,9 @@ ADDUSERFORM;
             <option value="2">Nauczyciel</option>
             <option value="3">Admin</option>
              </select> <br><br>
-            <input type="text" name="ocena_kartkowki" placeholder="Podaj ocenę kartkówki" value="{$user['ocena_kartkowki']}"><br><br>
-            <input type="text" name="ocena_sprawdzianu" placeholder="Podaj ocenę sprawdzianu" value="{$user['ocena_sprawdzianu']}"><br><br>
-            <input type="text" name="ocena_odpowiedzi" placeholder="Podaj ocenę odpowiedzi" value="{$user['ocena_odpowiedzi']}"><br><br>
+            <input type="text" name="ocena_kartkowki" placeholder="Podaj ocenę kartkówki" value="{$user['ocena_kartkowki']}" optional><br><br>
+            <input type="text" name="ocena_sprawdzianu" placeholder="Podaj ocenę sprawdzianu" value="{$user['ocena_sprawdzianu']}" optional><br><br>
+            <input type="text" name="ocena_odpowiedzi" placeholder="Podaj ocenę odpowiedzi" value="{$user['ocena_odpowiedzi']}" optional><br><br>
             <input type="email" name="email" placeholder="Podaj adres e-mail" value="{$user['email']}"><br><br>
             <input type="submit" value="Aktualizuj użytkownika">
              
