@@ -6,19 +6,20 @@
                 <div class="col-sm-6">
                     <h1 class="m-0">Dziennik Nauczyciela:</h1>
                     <div class="info">
-                        <span href="#" class="accent-green"><?php echo $_SESSION["logged"]["firstName"]." ".$_SESSION["logged"]["lastName"] ?></span>
+                        <span href="#" class="accent-green"> <?php echo $_SESSION["logged"]["firstName"]." ".$_SESSION["logged"]["lastName"] ?> </span>
                     </div>
-                </div><!-- /.col -->
+                </div>
+                <!-- /.col -->
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+                    <ol class="breadcrumb float-sm-right"></ol>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -29,24 +30,21 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Oceny</h3>
+                                    <h3 class="card-title">Podgląd</h3>
                                 </div>
-
                                 <!-- /.card-header -->
                                 <table class="card-body">
                                     <!doctype html>
                                     <html lang="pl">
                                     <head>
                                         <meta charset="UTF-8">
-                                        <meta name="viewport"
-                                              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+                                        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
                                         <meta http-equiv="X-UA-Compatible" content="ie=edge">
                                         <link rel="stylesheet" href="../css/table.css">
                                         <title>Użytkownicy</title>
                                     </head>
                                     <body>
-                                    <h4>Użytkownicy</h4>
-                                    <?php
+                                    <h4>Wszyscy Uczniowie</h4> <?php
 
                                     if (isset($_GET["userIdDelete"])) {
                                         if ($_GET["userIdDelete"] == 0) {
@@ -59,9 +57,7 @@
                                         echo "<h4>{$_SESSION['error']}</h4>";
                                         unset($_SESSION["error"]);
                                     }
-                                    ?>
-
-                                    <table>
+                                    ?><table>
                                         <tr>
                                             <th>Imię</th>
                                             <th>Nazwisko</th>
@@ -71,8 +67,7 @@
                                             <th>Średnia</th>
                                             <th>Email</th>
                                             <th>Akcje</th>
-                                        </tr>
-                                        <?php
+                                        </tr> <?php
                                         require_once "../scripts/connect.php";
                                         $sql = "SELECT\n"
                                             . "  u.id,\n"
@@ -115,24 +110,14 @@
                                             }
                                         }
                                         ?>
-
                                     </table>
-
-                                    <hr>
-                                    <?php
+                                    <hr> <?php
                                     if (isset($_GET["addUser"])) {
                                         echo <<< ADDUSERFORM
-        <h4>Dodawanie użytkownika</h4>
-        <form action="../scripts/add_user.php" method="post">
-            <input type="text" name="imie" placeholder="Podaj imię" autofocus><br><br>
-            <input type="text" name="nazwisko" placeholder="Podaj nazwisko"><br><br>
-            <input type="password" name="haslo" placeholder="Podaj hasło"><br><br>
-            <input type="email" name="email" placeholder="Podaj adres e-mail"><br><br>
-            <input type="submit" value="Dodaj użytkownika">
-        </form>
+        <h4>Dodawanie użytkownika</h4><form action="../scripts/add_user.php" method="post"><input type="text" name="imie" placeholder="Podaj imię" autofocus><br><br><input type="text" name="nazwisko" placeholder="Podaj nazwisko"><br><br><input type="password" name="haslo" placeholder="Podaj hasło"><br><br><input type="email" name="email" placeholder="Podaj adres e-mail"><br><br><input type="submit" value="Dodaj użytkownika"></form>
 ADDUSERFORM;
 
- } else if (isset($_GET["userIdUpdate"])) {
+                                    } else if (isset($_GET["userIdUpdate"])) {
                                         $userId = $_GET["userIdUpdate"];
                                         $sql = "SELECT u.*, k.ocena AS ocena_kartkowki, s.ocena AS ocena_sprawdzianu, o.ocena AS ocena_odpowiedzi
         FROM users AS u
@@ -144,23 +129,7 @@ ADDUSERFORM;
                                         $user = $result->fetch_assoc();
 
                                         echo <<< EDITUSERFORM
-        <h4>Aktualizacja użytkownika</h4>
-<form action="../scripts/update_user.php?userIdUpdate=$userId" method="post">
-            <input type="hidden" name="userId" value="$userId">
-            Imie <br>
-            <input type="text" name="imie" placeholder="Podaj imię" value="{$user['firstName']}" readonly><br><br>
-            Nazwisko <br>
-            <input type="text" name="nazwisko" placeholder="Podaj nazwisko" value="{$user['lastName']}" readonly><br><br>
-            Kartkówka <br>
-            <input type="text" name="ocena_kartkowki" placeholder="Podaj ocenę kartkówki" value="{$user['ocena_kartkowki']}" autofocus><br><br>
-            Sprawdzian <br>
-            <input type="text" name="ocena_sprawdzianu" placeholder="Podaj ocenę sprawdzianu" value="{$user['ocena_sprawdzianu']}"><br><br>
-            Odpowiedź <br>
-            <input type="text" name="ocena_odpowiedzi" placeholder="Podaj ocenę odpowiedzi" value="{$user['ocena_odpowiedzi']}"><br><br>
-            E-mail <br>
-            <input type="email" name="email" placeholder="Podaj adres e-mail" value="{$user['email']}" readonly><br><br>
-            <input type="submit" value="Aktualizuj użytkownika" onclick="updateUser()">
-        </form>
+        <h4>Aktualizacja użytkownika</h4><form action="../scripts/update_user.php?userIdUpdate=$userId" method="post"><input type="hidden" name="userId" value="$userId"><input type="text" name="imie" placeholder="Podaj imię" value="{$user['firstName']}" readonly><br><br><input type="text" name="nazwisko" placeholder="Podaj nazwisko" value="{$user['lastName']}" readonly><br><br><input type="text" name="ocena_kartkowki" placeholder="Podaj ocenę kartkówki" value="{$user['ocena_kartkowki']}" autofocus><br><br><input type="text" name="ocena_sprawdzianu" placeholder="Podaj ocenę sprawdzianu" value="{$user['ocena_sprawdzianu']}"><br><br><input type="text" name="ocena_odpowiedzi" placeholder="Podaj ocenę odpowiedzi" value="{$user['ocena_odpowiedzi']}"><br><br><input type="email" name="email" placeholder="Podaj adres e-mail" value="{$user['email']}" readonly><br><br><input type="submit" value="Aktualizuj użytkownika" onclick="updateUser()"></form>
         
 EDITUSERFORM;
                                     }else {
@@ -168,9 +137,7 @@ EDITUSERFORM;
                                     }
 
                                     $conn->close();
-                                    ?>
-
-                                    <script>
+                                    ?><script>
                                         function goBack() {
                                             history.back();
                                         }
@@ -183,43 +150,33 @@ EDITUSERFORM;
                                                 deleteUser(userId);
                                             });
                                         });
-
                                         // Funkcja do usuwania użytkownika
                                         function deleteUser(userId) {
                                             if (confirm("Czy na pewno chcesz usunąć tego użytkownika?")) {
                                                 window.location.href = `../scripts/delete_user.php?userIdDelete=${userId}`;
                                             }
                                         }
-
                                         // Funkcja do otwierania formularza edycji użytkownika
                                         function openEditUserForm(userId) {
                                             window.location.href = `../pages/logged.php?userIdUpdate=${userId}`;
                                         }
-
                                         // Funkcja do aktualizacji użytkownika
                                         function updateUser() {
                                             var ocena_kartkowki = document.getElementsByName("ocena_kartkowki")[0].value;
                                             var ocena_sprawdzianu = document.getElementsByName("ocena_sprawdzianu")[0].value;
                                             var ocena_odpowiedzi = document.getElementsByName("ocena_odpowiedzi")[0].value;
-
-                                            if (ocena_kartkowki >= 1 && ocena_kartkowki <= 6 &&
-                                                ocena_sprawdzianu >= 1 && ocena_sprawdzianu <= 6 &&
-                                                ocena_odpowiedzi >= 1 && ocena_odpowiedzi <= 6) {
+                                            if (ocena_kartkowki >= 1 && ocena_kartkowki <= 6 && ocena_sprawdzianu >= 1 && ocena_sprawdzianu <= 6 && ocena_odpowiedzi >= 1 && ocena_odpowiedzi <= 6) {
                                                 alert("Użytkownik został zaktualizowany!");
                                                 window.location.href = `../pages/logged.php?userIdUpdate`;
                                             } else {
                                                 alert("Błąd aktualizacji: Wprowadzona ocena musi być w przedziale od 1 do 6.");
                                                 window.location.href = `../pages/logged.php`;
                                             }
-
                                         }
                                     </script>
-
                                     </body>
                                     </html>
-
                                 </table>
-
                             </div>
                             <!-- /.card-body -->
                         </div>

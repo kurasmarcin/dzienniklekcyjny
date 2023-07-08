@@ -7,23 +7,8 @@ require '../../../vendor/PHPMailer-master/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Pobierz dane użytkowników z bazy danych
-$sql = "SELECT firstName, lastName, email FROM users";
-$result = $conn->query($sql);
-
-if ($result && $result->num_rows > 0) {
-    echo "<table>";
-    echo "<tr><th>Imię</th><th>Nazwisko</th><th>Email</th></tr>";
-    while ($row = $result->fetch_assoc()) {
-        $firstName = $row['firstName'];
-        $lastName = $row['lastName'];
-        $email = $row['email'];
-        echo "<tr><td>$firstName</td><td>$lastName</td><td>$email</td></tr>";
-    }
-    echo "</table>";
-} else {
-    echo "Brak danych użytkowników.";
-}
+// Pobierz adres e-mail odbiorcy z bazy danych na podstawie jego ID
+$recipientEmail = '';
 
 if (isset($_POST['submit'])) {
     $recipient = $_POST['recipient'];
@@ -63,17 +48,7 @@ if (isset($_POST['submit'])) {
     <div class="card-body">
         <div class="form-group">
             <label for="recipient">Odbiorca:</label>
-            <select class="form-control" id="recipient" name="recipient" required>
-                <?php
-                $result->data_seek(0); // Przejdź na początek wyników zapytania
-                while ($row = $result->fetch_assoc()) {
-                    $firstName = $row['firstName'];
-                    $lastName = $row['lastName'];
-                    $email = $row['email'];
-                    echo "<option value=\"$email\">$firstName $lastName ($email)</option>";
-                }
-                ?>
-            </select>
+            <input type="email" class="form-control" id="recipient" name="recipient" value="<?php echo $recipientEmail; ?>" required>
         </div>
         <div class="form-group">
             <label for="subject">Temat:</label>

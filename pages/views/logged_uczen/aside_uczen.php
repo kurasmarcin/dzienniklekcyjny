@@ -10,7 +10,7 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <?php
-                echo '<img src="../dist/img/avatar2.png' . $_SESSION["logged"]["logo"] . '" class="img-circle elevation-2" alt="User Image">';
+                echo '<img src="../../../dist/img/avatar2.png' . $_SESSION["logged"]["logo"] . '" class="img-circle elevation-2" alt="User Image">';
                 ?>
             </div>
             <div class="info">
@@ -38,20 +38,20 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./views/logged_uczen/kartkowka.php" class="nav-link">
+                            <a href="../../views/logged_uczen/kartkowka.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kartkówka</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="./views/logged_uczen/sprawdzian.php" class="nav-link active">
+                            <a href="../../views/logged_uczen/sprawdzian.php" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Sprawdzian</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./views/logged_uczen/odpowiedz.php" class="nav-link">
+                            <a href="../../views/logged_uczen/odpowiedz.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Odpowiedź</p>
                             </a>

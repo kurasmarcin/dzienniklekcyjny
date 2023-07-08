@@ -43,7 +43,7 @@
 
   <!-- Navbar -->
   <?php
-    require_once "./views/navbar.php";
+    require_once "./views/$role/navbar.php";
   ?>
   <!-- /.navbar -->
 
@@ -76,7 +76,7 @@
         echo "Nie znaleziono użytkownika.";
     }
     ?>
-    echo '<button class="btn btn-info btn-sm btn-details" data-user-id="' . $student['userId'] . '">Szczegóły</button>';
+
 
 
 </div>

@@ -10,7 +10,7 @@
             <a href="/../../dziennik/pages/logged.php" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/../../dziennik/pages/views/logged_nauczyciel/kontakt.php" class="nav-link">Kontakt</a>
+            <a href="/../../dziennik/pages/views/logged_admin/kontakt.php" class="nav-link">Kontakt</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="/../../dziennik/scripts/logout.php" class="nav-link">Wyloguj</a>

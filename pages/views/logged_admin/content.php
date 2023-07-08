@@ -148,7 +148,7 @@ ADDUSERFORM;
 
                                         echo <<< EDITUSERFORM
         <h4>Aktualizacja użytkownika</h4>
-<form action="../scripts/update_user.php?userIdUpdate=$userId " method="post">
+<form action="../scripts/update_user_admin.php?userIdUpdate=$userId " method="post">
             <input type="hidden" name="userId" value="$userId">
             <input type="text" name="imie" placeholder="Podaj imię" value="{$user['firstName']}" autofocus><br><br>
             <input type="text" name="nazwisko" placeholder="Podaj nazwisko" value="{$user['lastName']}"><br><br>
